@@ -1,0 +1,49 @@
+services:
+  postgres-app:
+    container_name: postgres-app-product
+    image: postgres:15
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: product_db
+    ports:
+      - "5432:5432"
+    networks:
+      - mynet
+    volumes:
+      - postgres_app:/var/lib/postgresql/data
+    
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8081:8080"
+    depends_on:
+     - postgres-app
+    networks:
+      - mynet
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: spring-api
+    ports:
+      - "8080:8080"
+    networks:
+      - mynet
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: react-ui
+    ports:
+      - "3000:80"
+    networks:
+      - mynet
+    # environment:
+    #   - REACT_APP_API_URL=http://backend:8080 
+
+networks:
+  mynet:
