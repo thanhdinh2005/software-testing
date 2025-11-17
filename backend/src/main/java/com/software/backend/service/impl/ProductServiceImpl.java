@@ -3,9 +3,11 @@ package com.software.backend.service.impl;
 import com.software.backend.dto.request.ProductRequest;
 import com.software.backend.dto.response.ProductResponse;
 import com.software.backend.service.ProductService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductResponse> getAllProducts() {
