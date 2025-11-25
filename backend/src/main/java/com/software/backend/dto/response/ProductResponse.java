@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data @AllArgsConstructor @NoArgsConstructor @Builder
+@Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class ProductResponse {
     private Long id;
     private String name;
@@ -13,4 +13,3 @@ public class ProductResponse {
     private Double price;
     private String categoryName;
 }
-

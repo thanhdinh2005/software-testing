@@ -19,7 +19,7 @@ docker run -p 3000:80 --name ui react-ui
 # Sau khi build image thì có thể chạy trong docker desktop trong tab container nhưng khuyến nghị lần đầu chạy nên chạy bằng command
 
 # Cách test với DB thật (Postgre) 
--> Chọn Run service "postgre-app" và "adminer" trong docker-compose.yml với cả vsc và inteliJ
+-> Chọn Run service "postgre-app" và "adminer" trong docker-compose.yml với cả vsc và intelliJ
 - adminer để xem dữ liệu bằng các truy cập http://localhost:8081
 + Nhập các Tab như sau:
 -> "System" : PostgreSQL 

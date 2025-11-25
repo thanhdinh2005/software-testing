@@ -13,7 +13,5 @@ public class Product {
     private String name;
     private Long quantity;
     private Double price;
-
-    @ManyToOne(targetEntity = Category.class, fetch = FetchType.LAZY)
-    private Category category;
+    private String categoryName;
 }
