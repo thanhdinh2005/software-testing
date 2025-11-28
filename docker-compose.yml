@@ -47,3 +47,6 @@ services:
 
 networks:
   mynet:
+
+volumes:
+  postgres_app:

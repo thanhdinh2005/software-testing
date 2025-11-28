@@ -1,5 +1,6 @@
 # Hướng dẫn chạy
 --> Máy đã cài Docker desktop
+--> chỉ chạy khi code đã ok do docker không tự cập nhật lại code mới mà cần xóa đi tải lại image khi có thay đổi
 
 # Với container của BE 
 + "cd" vào thư mục chứa Dockerfile
@@ -23,7 +24,7 @@ docker run -p 3000:80 --name ui react-ui
 - adminer để xem dữ liệu bằng các truy cập http://localhost:8081
 + Nhập các Tab như sau:
 -> "System" : PostgreSQL 
--> Server: postgre-app
+-> Server: postgres-app
 -> Username: username
 -> Password: password
 -> Database: product_db
