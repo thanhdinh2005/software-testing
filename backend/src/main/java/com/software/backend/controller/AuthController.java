@@ -3,7 +3,9 @@ package com.software.backend.controller;
 import com.software.backend.dto.request.LoginRequest;
 import com.software.backend.dto.response.ApiResponse;
 import com.software.backend.dto.response.LoginResponse;
+import com.software.backend.exception.BadRequestException;
 import com.software.backend.service.AuthService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +20,8 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request){
-        return ResponseEntity.ok(authService.authenticate(request));
+    public ResponseEntity<ApiResponse<LoginResponse>> login(@Valid @RequestBody LoginRequest request) throws BadRequestException {
+        LoginResponse response = authService.authenticate(request);
+        return ResponseEntity.ok(ApiResponse.success(response));
     }
 }

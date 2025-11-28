@@ -2,6 +2,7 @@ package com.software.backend.controller;
 
 import com.software.backend.dto.request.ProductRequest;
 import com.software.backend.dto.request.SearchProductRequest;
+import com.software.backend.dto.request.UpdateProductRequest;
 import com.software.backend.dto.response.ApiResponse;
 import com.software.backend.dto.response.PageResponse;
 import com.software.backend.dto.response.ProductResponse;
@@ -22,11 +23,11 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping
-    public ResponseEntity<PageResponse<ProductResponse>> getAll(
-            @RequestParam(name = "page", defaultValue = "0", required = false) int page,
-            @RequestParam(name = "size", defaultValue = "10", required = false) int size
+    public PageResponse<ProductResponse> getAllProducts(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
     ) {
-        return ResponseEntity.ok(productService.getAllProducts(page, size));
+        return productService.getAllProducts(page, size);
     }
 
     @GetMapping("/{id}")
@@ -45,7 +46,7 @@ public class ProductController {
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<ProductResponse>> update(
             @PathVariable Long id,
-            @RequestBody @Valid ProductRequest request
+            @RequestBody @Valid UpdateProductRequest request
     ) throws BadRequestException {
         ProductResponse res = productService.updateProductById(id, request);
         return ResponseEntity.ok(ApiResponse.success(res));
@@ -56,13 +57,12 @@ public class ProductController {
         productService.deleteProduct(id);
         return ResponseEntity.ok(ApiResponse.success(null));
     }
-
-    @GetMapping("/search")
-    public ResponseEntity<PageResponse<ProductResponse>> searchProduct(
-            @ModelAttribute SearchProductRequest request,
-            @RequestParam(name = "page", defaultValue = "0", required = false) int page,
-            @RequestParam(name = "size", defaultValue = "10", required = false) int size
+    @PostMapping("/search")
+    public PageResponse<ProductResponse> searchProducts(
+            @RequestBody SearchProductRequest request,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
     ) {
-        return ResponseEntity.ok(productService.searchProduct(request, page, size));
+        return productService.searchProduct(request, page, size);
     }
 }

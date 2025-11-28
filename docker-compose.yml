@@ -14,7 +14,7 @@ services:
       - postgres_app:/var/lib/postgresql/data
     
   adminer:
-    image: adminer
+    image: adminer:5.4.1
     restart: always
     ports:
       - "8081:8080"
