@@ -15,7 +15,6 @@ services:
     
   adminer:
     image: adminer:5.4.1
-    restart: always
     ports:
       - "8081:8080"
     depends_on:
@@ -42,8 +41,18 @@ services:
       - "3000:80"
     networks:
       - mynet
-    # environment:
-    #   - REACT_APP_API_URL=http://backend:8080 
+
+  k6:
+    image: grafana/k6:latest
+    volumes:
+      - ./backend/performance:/scripts
+    working_dir: /scripts
+    entrypoint: ["bash", "-c"]
+    command: ["k6 run login-test.js"]
+    depends_on:
+      - backend
+    networks:
+      - mynet
 
 networks:
   mynet:

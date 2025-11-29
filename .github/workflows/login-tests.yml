@@ -1,0 +1,34 @@
+name: Login Tests CI
+
+on:
+  push:
+    branches: [main]
+  pull-request:
+    branches: [main]
+
+jobs:
+  test-login:
+    runs-ons: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run:  |
+          cd frontend
+          npm install
+
+      - name: Run Login Unit Tests
+        run:  |
+          cd frontend
+          npm test -- --src/tests/validation.js
+
+      - name: Run Login E2E Tests
+        run:  |
+          cd frontend
+          npm run test:e2e -- --spec "cypress/e2e/login.e2e.cy.js"
+
