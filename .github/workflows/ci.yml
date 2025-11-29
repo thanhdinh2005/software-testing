@@ -1,0 +1,71 @@
+name: Complete CI/CD Pipeline (Build, Test, E2E)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build and Start Backend/DB Services
+        run: docker compose up -d --build postgres-app backend 
+          
+      - name: Wait for Spring Boot API (8080) to be ready
+        run: sleep 60s 
+
+      - name: Setup Java 21 for Backend
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+
+      - name: Setup Node.js 20 for Frontend
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Backend Unit Tests (Maven)
+        run: |
+          cd backend
+          ./mvnw clean test
+
+      - name: Install Frontend dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: Frontend Unit Tests (Coverage)
+        run: |
+          cd frontend
+          # Thêm '--coverage' để tạo báo cáo code coverage
+          npm test -- --coverage
+
+      - name: Start Frontend Dev Server
+        run: |
+          cd frontend
+          npm run dev &
+        env:
+          VITE_API_HOST: http://localhost:8080 
+          
+      - name: E2E Tests (Cypress)
+        run: |
+          cd frontend
+          npm run test:e2e
+          
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./frontend/coverage/lcov.info,./backend/target/site/jacoco/jacoco.xml
+
+      - name: Stop and Remove Backend Containers
+        if: always() 
+        run: docker compose down
