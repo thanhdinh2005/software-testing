@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build and Start Backend/DB Services
-        run: docker-compose up -d --build postgres-app backend 
+        run: docker compose up -d --build postgres-app backend 
           
       - name: Wait for Spring Boot API (8080) to be ready
         run: sleep 45s
@@ -56,4 +56,4 @@ jobs:
 
       - name: Stop and Remove Backend Containers
         if: always() 
-        run: docker-compose down
+        run: docker compose down
