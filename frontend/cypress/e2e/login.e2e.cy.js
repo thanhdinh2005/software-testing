@@ -1,5 +1,6 @@
 describe('Login E2E Test', () => {
   beforeEach(() => {
+    cy.intercept('POST', '/api/auth/login').as('loginRequest');
     cy.visit('http://localhost:3000/');
   })
   afterEach(() => {

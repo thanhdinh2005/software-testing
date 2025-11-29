@@ -2,111 +2,58 @@ name: Login Tests CI
 
 on:
   push:
-    branches: [ main ]
+    branches: 
+      - main 
+    paths:
+      - 'frontend/**'
+      - 'backend/src/**'
   pull_request:
     branches: [ main ]
+    paths:
+      - 'frontend/**'
+      - 'backend/src/**'
 
 jobs:
-  login-ci:
+  test-login:
     runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        image: postgres:15
-        ports:
-          - 5432:5432
-        env:
-          POSTGRES_USER: username
-          POSTGRES_PASSWORD: password
-          POSTGRES_DB: product_db
-        options: >-
-          --health-cmd="pg_isready -U username"
-          --health-interval=5s
-          --health-timeout=5s
-          --health-retries=10
-
+    
     steps:
-      # -----------------------------
-      # 1. Checkout source code
-      # -----------------------------
-      - name: Checkout Code
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      # -----------------------------
-      # 2. Setup JDK for Spring Boot
-      # -----------------------------
-      - name: Setup JDK 21
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '21'
-
-      # -----------------------------
-      # 3. Build & Run Spring Boot backend
-      # -----------------------------
-      - name: Build Backend
-        working-directory: ./backend
-        run: mvn clean package -DskipTests
-
-      - name: Start Backend Server
-        working-directory: ./backend
-        run: |
-          nohup java -jar target/*.jar &
-          sleep 20
-
-      # -----------------------------
-      # 4. Run K6 performance test
-      # -----------------------------
-      - name: Install K6
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y gnupg2 ca-certificates
-          curl -s https://packagecloud.io/install/repositories/loadimpact/k6/script.deb.sh | sudo bash
-          sudo apt-get install -y k6
-
-      - name: Run Login Performance Test
-        run: |
-          mkdir -p k6-report
-          k6 run backend/performance/login-test.js --out json=k6-report/result.json
-
-      # -----------------------------
-      # 5. Convert K6 JSON → HTML
-      # -----------------------------
-      - name: Generate K6 HTML Report
-        run: |
-          npm install -g @xk6/dashboard
-          xk6-dashboard export k6-report/result.json k6-report/index.html
-
-      # -----------------------------
-      # 6. Setup Node for frontend
-      # -----------------------------
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Build and Start Backend/DB Services
+        run: docker-compose up -d --build postgres-app backend 
+          
+      - name: Wait for Spring Boot API (8080) to be ready
+        run: sleep 45s
+        
+      - name: 🛠️ Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Install Frontend Dependencies
-        working-directory: ./frontend
-        run: npm install
-
-      # -----------------------------
-      # 7. Run FE Unit tests + coverage
-      # -----------------------------
-      - name: Run Unit Tests
-        working-directory: ./frontend
-        run: npm test -- --coverage
-
-      - name: Upload Unit Test Coverage
-        uses: actions/upload-artifact@v3
-        with:
-          name: frontend-coverage
-          path: frontend/coverage
-
-      # -----------------------------
-      # 8. Run Cypress E2E Login Test
-      # -----------------------------
-      - name: Cypress E2E Tests
-        working-directory: ./frontend
+      - name: Install Frontend dependencies
         run: |
-          npx cypress install
-          npx cypress run --spec "cypress/e2e/login.e2e.cy.js"
+          cd frontend
+          npm install
+
+      - name: Start Frontend Dev Server
+        run: |
+          cd frontend
+          npm run dev & 
+        env:
+          VITE_API_HOST: http://localhost:8080 
+        
+      - name: Run Login Unit Tests
+        run: |
+          cd frontend
+          npm test -- --src/tests/validation.test.js
+          
+      - name: Run Login E2E Tests
+        run: |
+          cd frontend
+          npm run test:e2e -- --spec "cypress/e2e/login.spec.js"
+
+      - name: 🛑 Stop and Remove Backend Containers
+        if: always() 
+        run: docker-compose down
