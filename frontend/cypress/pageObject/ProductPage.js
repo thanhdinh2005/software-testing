@@ -2,7 +2,7 @@ class ProductPage {
     visit() {
         cy.visit('http://localhost:3000/');
         cy.get('[data-testid="username-input"]').type('user1');
-        cy.get('[data-testid="password-input"]').type('password1');
+        cy.get('[data-testid="password-input"]').type('password123');
         cy.get('[data-testid="login-button"]').click();
     }
 
