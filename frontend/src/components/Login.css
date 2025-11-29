@@ -1,0 +1,135 @@
+/* ===== PAGE CONTAINER ===== */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    font-family: "Arial", sans-serif;
+    padding: 0 20px;
+}
+
+/* ===== FORM BOX ===== */
+.login-box {
+    background: #ffffff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 380px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.3s ease;
+}
+
+.login-box h1 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 28px;
+    color: #333;
+}
+
+/* ===== INPUTS ===== */
+.login-box input {
+    width: 100%;
+    padding: 12px 14px;
+    margin: 8px 0 5px;
+    border: 1.5px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: 0.25s;
+}
+
+.login-box input:focus {
+  outline: none;
+  border-color: #6e8efb;
+  box-shadow: 0 0 4px rgba(110, 142, 251, 0.6);
+}
+
+/* ===== PASSWORD WRAPPER ===== */
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  user-select: none;
+}
+
+.eye-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: #555;
+  transition: 0.2s;
+}
+
+.eye-icon svg:hover {
+  stroke: #111;
+}
+
+/* ===== BUTTON ===== */
+.login-button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  background: #6e8efb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.login-button:hover {
+  background: #5a75e6;
+}
+
+.login-button:active {
+  transform: scale(0.98);
+}
+
+/* ===== ERROR TEXT ===== */
+.error-text {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 3px;
+}
+
+/* ===== SUCCESS / FAIL MESSAGE ===== */
+.message {
+  margin-top: 12px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.message.success {
+  color: #27ae60;
+}
+
+.message.error {
+  color: #e74c3c;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
