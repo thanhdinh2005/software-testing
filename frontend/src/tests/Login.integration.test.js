@@ -9,6 +9,7 @@ jest.mock("react-router-dom", () => ({
   useNavigate: () => mockNavigate,
 }));
 
+
 jest.mock("../services/authService");
 import Login from "../components/Login";
 
