@@ -16,7 +16,7 @@ describe('Login E2E Test', () => {
 
   it('Đăng nhập thành công', () => {
     cy.get('[data-testid="username-input"]').type('user1');
-    cy.get('[data-testid="password-input"]').type('password1');
+    cy.get('[data-testid="password-input"]').type('password123');
     cy.get('[data-testid="login-button"]').click();
     cy.url().should('include', '/dashboard');
     cy.get('[data-testid="username-login"]').should('contain', 'user1');

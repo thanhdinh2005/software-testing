@@ -52,7 +52,7 @@ jobs:
       - name: Run Login E2E Tests
         run: |
           cd frontend
-          npm run test:e2e -- --spec "cypress/e2e/login.spec.js"
+          npm run test:e2e -- --spec "cypress/e2e/login.e2e.cy.js"
 
       - name: Stop and Remove Backend Containers
         if: always() 
