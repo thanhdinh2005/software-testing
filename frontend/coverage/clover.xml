@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1764382787996" clover="3.2.0">
+  <project timestamp="1764382787996" name="All files">
+    <metrics statements="124" coveredstatements="102" conditionals="83" coveredconditionals="79" methods="30" coveredmethods="20" elements="237" coveredelements="201" complexity="0" loc="124" ncloc="124" packages="3" files="8" classes="8"/>
+    <package name="components">
+      <metrics statements="62" coveredstatements="59" conditionals="36" coveredconditionals="34" methods="20" coveredmethods="17"/>
+      <file name="Login.jsx" path="D:\test\software-testing\frontend\src\components\Login.jsx">
+        <metrics statements="26" coveredstatements="23" conditionals="14" coveredconditionals="13" methods="7" coveredmethods="4"/>
+        <line num="8" count="23" type="stmt"/>
+        <line num="9" count="23" type="stmt"/>
+        <line num="10" count="23" type="stmt"/>
+        <line num="11" count="23" type="stmt"/>
+        <line num="12" count="23" type="stmt"/>
+        <line num="13" count="23" type="stmt"/>
+        <line num="16" count="23" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+        <line num="19" count="5" type="stmt"/>
+        <line num="20" count="5" type="stmt"/>
+        <line num="21" count="5" type="stmt"/>
+        <line num="26" count="5" type="cond" truecount="4" falsecount="0"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="30" count="4" type="stmt"/>
+        <line num="31" count="4" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="34" count="2" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="37" count="2" type="stmt"/>
+        <line num="41" count="23" type="stmt"/>
+        <line num="47" count="4" type="stmt"/>
+        <line num="61" count="4" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+      </file>
+      <file name="ProductDetail.jsx" path="D:\test\software-testing\frontend\src\components\ProductDetail.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="3" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="5" count="1" type="stmt"/>
+      </file>
+      <file name="ProductForm.jsx" path="D:\test\software-testing\frontend\src\components\ProductForm.jsx">
+        <metrics statements="29" coveredstatements="29" conditionals="18" coveredconditionals="17" methods="8" coveredmethods="8"/>
+        <line num="7" count="17" type="stmt"/>
+        <line num="8" count="17" type="stmt"/>
+        <line num="9" count="17" type="stmt"/>
+        <line num="10" count="17" type="stmt"/>
+        <line num="11" count="17" type="stmt"/>
+        <line num="12" count="17" type="stmt"/>
+        <line num="14" count="17" type="stmt"/>
+        <line num="15" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="24" count="17" type="stmt"/>
+        <line num="25" count="3" type="stmt"/>
+        <line num="26" count="3" type="stmt"/>
+        <line num="27" count="3" type="stmt"/>
+        <line num="28" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="32" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="38" count="17" type="stmt"/>
+        <line num="65" count="2" type="stmt"/>
+        <line num="69" count="2" type="stmt"/>
+        <line num="73" count="2" type="stmt"/>
+        <line num="79" count="2" type="stmt"/>
+        <line num="91" count="2" type="stmt"/>
+      </file>
+      <file name="ProductList.jsx" path="D:\test\software-testing\frontend\src\components\ProductList.jsx">
+        <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="20" count="16" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="services">
+      <metrics statements="27" coveredstatements="8" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="0"/>
+      <file name="authService.js" path="D:\test\software-testing\frontend\src\services\authService.js">
+        <metrics statements="3" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+      </file>
+      <file name="productService.js" path="D:\test\software-testing\frontend\src\services\productService.js">
+        <metrics statements="24" coveredstatements="7" conditionals="2" coveredconditionals="0" methods="6" coveredmethods="0"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="6" count="3" type="cond" truecount="0" falsecount="2"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="28" count="3" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="39" count="3" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="50" count="3" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="60" count="3" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="utils">
+      <metrics statements="35" coveredstatements="35" conditionals="45" coveredconditionals="45" methods="3" coveredmethods="3"/>
+      <file name="productValidation.js" path="D:\test\software-testing\frontend\src\utils\productValidation.js">
+        <metrics statements="23" coveredstatements="23" conditionals="29" coveredconditionals="29" methods="1" coveredmethods="1"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="21" type="stmt"/>
+        <line num="4" count="21" type="cond" truecount="4" falsecount="0"/>
+        <line num="5" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="11" count="21" type="cond" truecount="4" falsecount="0"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="14" count="21" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="4" type="stmt"/>
+        <line num="16" count="21" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="19" count="21" type="cond" truecount="5" falsecount="0"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="21" count="21" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="21" type="cond" truecount="2" falsecount="0"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="26" count="21" type="cond" truecount="4" falsecount="0"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="29" count="21" type="cond" truecount="2" falsecount="0"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="32" count="21" type="stmt"/>
+      </file>
+      <file name="validation.js" path="D:\test\software-testing\frontend\src\utils\validation.js">
+        <metrics statements="12" coveredstatements="12" conditionals="16" coveredconditionals="16" methods="2" coveredmethods="2"/>
+        <line num="2" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="3" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="4" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="6" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="11" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="14" count="6" type="stmt"/>
+        <line num="15" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="5" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
