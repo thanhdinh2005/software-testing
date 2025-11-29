@@ -53,18 +53,6 @@ services:
     volumes:
       - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf
 
-  k6:
-    image: grafana/k6:latest
-    volumes:
-      - ./backend/performance:/scripts
-    working_dir: /scripts
-    entrypoint: ["bash", "-c"]
-    command: ["k6 run login-test.js"]
-    depends_on:
-      - backend
-    networks:
-      - mynet
-
 networks:
   mynet:
 
