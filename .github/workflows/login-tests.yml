@@ -27,7 +27,7 @@ jobs:
       - name: Wait for Spring Boot API (8080) to be ready
         run: sleep 45s
         
-      - name: 🛠️ Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -54,6 +54,6 @@ jobs:
           cd frontend
           npm run test:e2e -- --spec "cypress/e2e/login.spec.js"
 
-      - name: 🛑 Stop and Remove Backend Containers
+      - name: Stop and Remove Backend Containers
         if: always() 
         run: docker-compose down
