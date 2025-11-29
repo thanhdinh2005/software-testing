@@ -12,6 +12,7 @@ services:
       - mynet
     volumes:
       - postgres_app:/var/lib/postgresql/data
+      - ./data-sample.sql:/docker-entrypoint-initdb.d/init.sql
     
   adminer:
     image: adminer:5.4.1
