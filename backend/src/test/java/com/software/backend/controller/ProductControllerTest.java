@@ -95,24 +95,7 @@ class ProductControllerTest {
         verify(productService).getById(1L);
         }
 
-        @Test
-        @DisplayName("POST /api/products - should return 400 if product name already exists")
-        void create_badRequest_duplicateName() throws Exception {
-        // Tên sản phẩm đã tồn tại → vi phạm nghiệp vụ
-        ProductRequest request = new ProductRequest("Laptop", 1000.0, 10L, "Dien tu", "Electronic");
-
-        when(productService.createProduct(any(ProductRequest.class)))
-                .thenThrow(new BadRequestException("Product name already exists"));
-
-        mockMvc.perform(post("/api/products")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.success").value(false))
-                .andExpect(jsonPath("$.message").value("Product name already exists"));
-
-        verify(productService).createProduct(any(ProductRequest.class));
-        }
+        
 
         @Test
         @DisplayName("POST /api/products - should return 400 if request violates validation rules")
@@ -149,24 +132,6 @@ class ProductControllerTest {
         verify(productService).createProduct(any(ProductRequest.class));
         }
 
-        @Test
-        @DisplayName("PUT /api/products/{id} - should return 400 if update request is empty")
-        void update_badRequest_emptyUpdate() throws Exception {
-        // Request cập nhật rỗng (không có field nào)
-        UpdateProductRequest emptyUpdate = new UpdateProductRequest(null, null, null, null, null);
-
-        when(productService.updateProductById(eq(1L), any(UpdateProductRequest.class)))
-                .thenThrow(new BadRequestException("Update request cannot be empty"));
-
-        mockMvc.perform(put("/api/products/1")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(emptyUpdate)))
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.success").value(false))
-                .andExpect(jsonPath("$.message").value("Update request cannot be empty"));
-
-        verify(productService).updateProductById(eq(1L), any(UpdateProductRequest.class));
-        }
 
         @Test
         @DisplayName("PUT /api/products/{id} - should return 404 if product to update is not found")

@@ -2,7 +2,7 @@ package com.software.backend.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.apache.coyote.BadRequestException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,6 +22,7 @@ import com.software.backend.entity.Product;
 import com.software.backend.exception.ResourceNotFoundException;
 import com.software.backend.mapper.ProductMapper;
 import com.software.backend.repository.ProductRepository;
+import com.software.backend.exception.BadRequestException;
 
 import java.util.List;
 import java.util.Optional;
