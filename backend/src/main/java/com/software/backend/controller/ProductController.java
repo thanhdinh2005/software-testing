@@ -9,12 +9,10 @@ import com.software.backend.dto.response.ProductResponse;
 import com.software.backend.service.ProductService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.BadRequestException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/products")
@@ -30,6 +28,7 @@ public class ProductController {
         return productService.getAllProducts(page, size);
     }
 
+
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<ProductResponse>> getById(@PathVariable Long id) {
         ProductResponse res = productService.getById(id);
@@ -37,32 +36,37 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ApiResponse<ProductResponse>> create(@RequestBody @Valid ProductRequest request) throws BadRequestException {
+    public ResponseEntity<ApiResponse<ProductResponse>> create(@RequestBody @Valid ProductRequest request) {
         ProductResponse res = productService.createProduct(request);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ApiResponse.success(res));
+                .body(ApiResponse.success(res)); // hoặc ApiResponse.ok(res) nếu bạn không có created()
     }
 
-    @PutMapping("/{id}")
+     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<ProductResponse>> update(
             @PathVariable Long id,
             @RequestBody @Valid UpdateProductRequest request
-    ) throws BadRequestException {
+    ) {
         ProductResponse res = productService.updateProductById(id, request);
         return ResponseEntity.ok(ApiResponse.success(res));
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         productService.deleteProduct(id);
         return ResponseEntity.ok(ApiResponse.success(null));
+
+        // Nếu bạn muốn đồng bộ format ApiResponse thay vì 204:
+        // return ResponseEntity.ok(ApiResponse.ok(null));
     }
     @PostMapping("/search")
-    public PageResponse<ProductResponse> searchProducts(
-            @RequestBody SearchProductRequest request,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
-    ) {
-        return productService.searchProduct(request, page, size);
-    }
+public PageResponse<ProductResponse> searchProducts(
+        @RequestBody SearchProductRequest request,
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "10") int size
+) {
+    return productService.searchProduct(request, page, size);
+}
+    
 }

@@ -7,12 +7,12 @@ import com.software.backend.dto.response.PageResponse;
 import com.software.backend.dto.response.ProductResponse;
 import com.software.backend.entity.Category;
 import com.software.backend.entity.Product;
+import com.software.backend.exception.BadRequestException;
 import com.software.backend.exception.ResourceNotFoundException;
 import com.software.backend.mapper.ProductMapper;
 import com.software.backend.repository.ProductRepository;
 import com.software.backend.specification.ProductSpecification;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.BadRequestException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -50,7 +50,7 @@ public class ProductService {
         return productMapper.toResponse(productRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + id)));
     }
 
-    public ProductResponse createProduct(ProductRequest request) throws BadRequestException {
+    public ProductResponse createProduct(ProductRequest request) {
         validateProductRequest(request);
         validateCategory(request.categoryName());
         Product product = productMapper.toEntity(request);
@@ -66,7 +66,7 @@ public class ProductService {
      * @throws ResourceNotFoundException if product does not exist
      * @throws BadRequestException if request contains invalid fields
      */
-    public ProductResponse updateProductById(Long id, UpdateProductRequest request) throws BadRequestException {
+    public ProductResponse updateProductById(Long id, UpdateProductRequest request) {
         if (isEmptyUpdate(request)) {
             throw new BadRequestException("Update request cannot be empty");
         }
@@ -126,7 +126,7 @@ public class ProductService {
         });
 
         request.price().ifPresent(price -> {
-            if (price > 999999999)
+            if (price < 0 || price > 999999999)
                 throw new IllegalArgumentException("Invalid price");
             product.setPrice(price);
         });
@@ -144,7 +144,7 @@ public class ProductService {
         });
     }
 
-    private void validateCategory(String category) throws BadRequestException {
+    private void validateCategory(String category) {
         if (!Category.exists(category)) {
             throw new BadRequestException("Category does not exist: " + category);
         }
