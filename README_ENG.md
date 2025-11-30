@@ -1,7 +1,7 @@
-## Giới thiệu ứng dụng quản lý sản phẩm
-Ứng dụng bao gồm frontend, backend và hệ thống kiểm thử tự động (Automation + Performance), được đóng gói bằng Docker.
+## Product Management Application
+This application includes a frontend, backend, and automated testing stack (Automation + Performance), all containerized using Docker.
 
-### Công nghệ sử dụng
+### Technologies Used
 - **Frontend:** ReactJS  
 - **Backend:** Spring Boot, Spring Security  
 - **Testing:**  
@@ -11,17 +11,17 @@
 - **Database:** PostgreSQL  
 - **Containerization:** Docker & Docker Compose  
 
-### Tính năng chính
-- Đăng nhập bằng username/password.
-- Quản lý CRUD sản phẩm.
-- API được bảo vệ bằng Spring Security.
+### Features
+- Login using username/password.
+- CRUD operations for products.
+- API protected with Spring Security.
 
 ---
 
-## Hướng dẫn chạy ứng dụng
+## How to Run the Application
 
-### 1. Yêu cầu hệ thống
-Cần cài đặt:
+### 1. System Requirements
+You must install:
 - Docker Desktop  
 - Git  
 - Node.js  
@@ -30,9 +30,9 @@ Cần cài đặt:
 
 ---
 
-### 2. Hướng dẫn khởi chạy
+### 2. Run Instructions
 
-#### Clone dự án:
+#### Clone repository:
 ```bash
 git clone https://github.com/thanhdinh2005/software-testing.git
 cd software-testing
@@ -46,39 +46,39 @@ npm run build
 cd ..
 ```
 
-#### Khởi động ứng dụng bằng Docker Compose:
+#### Start application with Docker Compose:
 ```bash
 docker-compose up --build -d
 ```
 
-#### Truy cập ứng dụng:
+#### Access the application:
 - **Frontend:** http://localhost:3000  
 - **Backend:** http://localhost:8080  
 - **Adminer:** http://localhost:8081  
 
 ---
 
-## Hướng dẫn chạy test
+## Running Tests
 
-### Frontend Unit Test:
+### Frontend Unit Tests:
 ```bash
 cd frontend
 npm test
 ```
 
-### Frontend Automation Test (Cypress):
+### Frontend Automation Tests (Cypress):
 ```bash
 cd frontend
 npm run test:e2e
 ```
 
-### Backend Unit Test:
+### Backend Unit Tests:
 ```bash
 cd backend
 mvn clean test
 ```
 
-### Performance Test (k6):
+### Performance Tests (k6):
 ```bash
 cd backend
 docker compose run k6 run login-test.js
